@@ -23,12 +23,25 @@ body {
   border: 1px #38ac38 dashed;
 }
 
+.header {
+  left: 60px;
+  right: 60px;
+}
+
+.terminal_data {
+  padding-top: 50px;
+}
+
+.terminal_right {
+  width: 66%;
+}
+
 .menu_item {
   padding-left: 6px;
   width: 100px;
 }
 
-.about_image{
+.about_image {
   width: 700px;
   height: 400px;
 }
@@ -52,6 +65,8 @@ body {
   color: gray;
 }
 
+
+/* Animations */
 @keyframes glitch {
   0% {
     clip: rect(42px, 9999px, 44px, 0);
@@ -188,4 +203,20 @@ body {
 .glitch:hover::before,
 .glitch:hover::after {
   animation: glitch 0.3s infinite linear alternate-reverse;
+}
+
+@keyframes blink {
+
+  from,
+  to {
+    visibility: hidden;
+  }
+
+  50% {
+    visibility: visible;
+  }
+}
+
+.blinking_underscore {
+  animation: blink 1s step-end infinite;
 }

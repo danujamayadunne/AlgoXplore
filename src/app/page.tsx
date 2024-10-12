@@ -32,24 +32,26 @@ export default function Home() {
 
       <div className="overflow-x-hidden overflow-y-scroll terminal">
 
-        <div className="flex justify-between items-center">
-          <p className="relative font-bold text-xl pointer-events-none glitch" data-text="AlgoXplore 1.0">AlgoXplore 1.0</p>
-          <div className="flex gap-3 text-sm">
-            <Link href="/">
-              <p className="hover:after:content-['↗'] hover:after:ml-1 pointer-events-auto">LinkedIn</p>
-            </Link>
-            <Link href="/">
-              <p className="hover:after:content-['↗'] hover:after:ml-1">Instagram</p>
-            </Link>
-            <Link href="/">
-              <p className="hover:after:content-['↗'] hover:after:ml-1">Facebook</p>
-            </Link>
+        <div className="fixed z-10 header">
+          <div className="flex justify-between items-center">
+            <p className="relative font-bold text-xl pointer-events-none glitch" data-text="AlgoXplore 1.0">AlgoXplore 1.0</p>
+            <div className="flex gap-3 text-sm">
+              <Link href="/">
+                <p className="hover:after:content-['↗'] hover:after:ml-1 pointer-events-auto">LinkedIn</p>
+              </Link>
+              <Link href="/">
+                <p className="hover:after:content-['↗'] hover:after:ml-1">Instagram</p>
+              </Link>
+              <Link href="/">
+                <p className="hover:after:content-['↗'] hover:after:ml-1">Facebook</p>
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="flex justify-between pt-9">
+        <div className="flex justify-between terminal_data">
 
-          <div className="w-2/4">
+          <div className="fixed w-2/4">
             <div className="flex flex-col gap-2 justify-center">
               {tabs.map((tab) => (
                 <div
@@ -63,11 +65,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="w-full">
+          <div className="terminal_right ml-auto overflow-y-auto">
             {activeTab === "About" &&
               <div className="pr-20">
                 <p>
-                  AlgoXplore 1.0 is event organized by the []. The event is aimed at providing a platform for students to explore the world of algorithms and data structures. The event will consist of a series of lectures and hands-on sessions on various topics in algorithms and data structures. The event will also include a coding competition where participants can showcase their skills in competitive programming. //AI Generated Text.
+                  AlgoXplore 1.0 is event organized by the []. The event is aimed at providing a platform for students to explore the world of algorithms and data structures. The event will consist of a series of lectures and hands-on sessions on various topics in algorithms and data structures. The event will also include a coding competition where participants can showcase their skills in competitive programming
+                  <span className="blinking_underscore"> _</span>
                 </p>
                 <img className="mt-5 about_image" src="/algoexplore.jpg" alt="AlgoXplore" width={500} height={200} />
                 <p className="pt-5">
@@ -105,7 +108,7 @@ export default function Home() {
                     <input className="input2 pt-2" type="text" id="member" name="member3" placeholder="Member 3" />
                     <input className="input2 pt-2" type="text" id="member" name="member4" placeholder="Member 4" />
                   </div>
-                  <button className="btn mt-9 border p-2 text-sm border-[#38ac38] hover:bg-[#38ac38] hover:text-black" type="submit">Register</button>
+                  <button className="btn mt-9 border p-2 text-sm border-[#38ac38] hover:bg-[#38ac38] hover:text-black" type="submit"> &gt;&gt; Register</button>
                 </form>
               </div>
             }
