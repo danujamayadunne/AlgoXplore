@@ -1,101 +1,120 @@
+'use client'
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  const tabs = ["About", "Menu 2", "Menu 3", "Menu 4", "Register"];
+  const [activeTab, setActiveTab] = useState("About");
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    const currentIndex = tabs.indexOf(activeTab);
+    if (event.key === "ArrowDown") {
+      const nextIndex = (currentIndex + 1) % tabs.length;
+      setActiveTab(tabs[nextIndex]);
+    } else if (event.key === "ArrowUp") {
+      const prevIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+      setActiveTab(tabs[prevIndex]);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeTab]);
+
+  return (
+    <main className="main flex items-center justify-center min-h-screen">
+
+      <div className="overflow-x-hidden overflow-y-scroll terminal">
+
+        <div className="flex justify-between items-center">
+          <p className="relative font-bold text-xl pointer-events-none glitch" data-text="AlgoXplore 1.0">AlgoXplore 1.0</p>
+          <div className="flex gap-3 text-sm">
+            <Link href="/">
+              <p className="hover:after:content-['↗'] hover:after:ml-1 pointer-events-auto">LinkedIn</p>
+            </Link>
+            <Link href="/">
+              <p className="hover:after:content-['↗'] hover:after:ml-1">Instagram</p>
+            </Link>
+            <Link href="/">
+              <p className="hover:after:content-['↗'] hover:after:ml-1">Facebook</p>
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <div className="flex justify-between pt-9">
+
+          <div className="w-2/4">
+            <div className="flex flex-col gap-2 justify-center">
+              {tabs.map((tab) => (
+                <div
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`cursor-pointer menu_item ${activeTab === tab ? "bg-[#38ac38] text-black" : ""}`}
+                >
+                  {tab}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="w-full">
+            {activeTab === "About" &&
+              <div className="pr-20">
+                <p>
+                  AlgoXplore 1.0 is event organized by the []. The event is aimed at providing a platform for students to explore the world of algorithms and data structures. The event will consist of a series of lectures and hands-on sessions on various topics in algorithms and data structures. The event will also include a coding competition where participants can showcase their skills in competitive programming. //AI Generated Text.
+                </p>
+                <img className="mt-5 about_image" src="/algoexplore.jpg" alt="AlgoXplore" width={500} height={200} />
+                <p className="pt-5">
+                  The event is open to all students who are interested in algorithms and data structures. Participants can register as a team of up to four members. The event will be held on 10th October 2021 at the []. Participants are required to bring their own laptops for the coding competition. The event is free of charge and lunch will be provided. //AI Generated Text.
+                </p>
+              </div>
+            }
+
+            {activeTab === "Menu 2" && <div>Menu Content 2</div>}
+            {activeTab === "Menu 3" && <div>Menu Content 3</div>}
+            {activeTab === "Menu 4" && <div>Menu Content 4</div>}
+
+            {activeTab === "Register" &&
+              <div>
+                <p>Register for the event</p>
+                <form className="pt-9">
+                  <div className="flex gap-20">
+                    <div className="flex flex-col">
+                      <label htmlFor="teamname">Team Name</label>
+                      <input className="input" type="text" id="teamname" name="teamname" placeholder="Group X" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="email">Email</label>
+                      <input className="input" type="email" id="email" name="email" placeholder="example@email.com" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="mobile">Mobile</label>
+                      <input className="input" type="text" id="mobile" name="mobile" placeholder="07X-XXXX-XXX" />
+                    </div>
+                  </div>
+                  <div className="flex flex-col pt-9">
+                    <label htmlFor="member">Team Members</label>
+                    <input className="input2 pt-2" type="text" id="member" name="member1" placeholder="Member 1" />
+                    <input className="input2 pt-2" type="text" id="member" name="member2" placeholder="Member 2" />
+                    <input className="input2 pt-2" type="text" id="member" name="member3" placeholder="Member 3" />
+                    <input className="input2 pt-2" type="text" id="member" name="member4" placeholder="Member 4" />
+                  </div>
+                  <button className="btn mt-9 border p-2 text-sm border-[#38ac38] hover:bg-[#38ac38] hover:text-black" type="submit">Register</button>
+                </form>
+              </div>
+            }
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
   );
 }
