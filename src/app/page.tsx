@@ -56,7 +56,7 @@ export default function Home() {
         <div className="fixed z-10 header">
           <div className="flex justify-between items-center">
             <p className="relative font-bold text-xl pointer-events-none glitch" data-text="AlgoXplore 1.0">AlgoXplore 1.0</p>
-            <div className="flex gap-3 text-sm">
+            <div className="flex flex-col text-sm lg:flex-row lg:gap-3">
               <Link href="/">
                 <p className="hover:after:content-['↗'] hover:after:ml-1 pointer-events-auto">LinkedIn</p>
               </Link>
@@ -70,25 +70,24 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex justify-between terminal_data">
+        <div className="flex flex-col justify-between items-center lg:flex-row lg:items-start terminal_data">
 
-          <div className="fixed w-2/4">
-            <div className="flex flex-col gap-2 justify-center">
+          <div className=" w-full pt-9 lg:fixed lg:pt-0 lg:w-2/4">
+            <div className="flex gap-2 justify-center items-center lg:flex-col lg:items-start">
               {tabs.map((tab) => (
                 <div
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`cursor-pointer menu_item ${activeTab === tab ? "bg-[#38ac38] text-black" : ""}`}
-                >
+                  className={`cursor-pointer menu_item ${activeTab === tab ? "bg-[#38ac38] text-black" : ""}`}>
                   {tab}
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="ml-auto overflow-y-auto z-50 terminal_right ">
+          <div className="ml-auto overflow-y-auto z-50 terminal_right">
             {activeTab === "About" &&
-              <div className="pr-20">
+              <div className="lg:pr-20">
                 <p className="text">
                   AlgoXplore 1.0 is event organized by the []. The event is aimed at providing a platform for students to explore the world of algorithms and data structures. The event will consist of a series of lectures and hands-on sessions on various topics in algorithms and data structures. The event will also include a coding competition where participants can showcase their skills in competitive programming
                   <span className="blinking_underscore"> _</span>

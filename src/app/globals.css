@@ -266,3 +266,22 @@ body {
 .flicker_delay {
   animation: flicker 0.2s infinite;
 }
+
+@media only screen and (max-width: 768px) {
+  .header {
+    left: 40px;
+    right: 40px;
+  }
+
+  .menu_item {
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    width: 100px;
+  }
+
+  .terminal_right {
+    width: 100%;
+    padding-top: 36px;
+  }
+}
