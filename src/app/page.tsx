@@ -41,7 +41,7 @@ export default function Home() {
         crtElement.classList.add('flicker_delay');
         setTimeout(() => {
           crtElement.classList.remove('flicker_delay');
-        }, 2000);
+        }, 1900);
       }, 5000);
 
       return () => clearInterval(interval);
@@ -86,7 +86,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="terminal_right ml-auto overflow-y-auto">
+          <div className="ml-auto overflow-y-auto z-50 terminal_right ">
             {activeTab === "About" &&
               <div className="pr-20">
                 <p className="text">
