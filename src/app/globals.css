@@ -220,3 +220,49 @@ body {
 .blinking_underscore {
   animation: blink 1s step-end infinite;
 }
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 2px rgba(56, 172, 56, 0.8),
+      0 0 6px rgba(56, 172, 56, 0.6),
+      0 0 6px rgba(56, 172, 56, 0.4);
+  }
+
+  50% {
+    text-shadow: 0 0 4px rgba(56, 172, 56, 1),
+      0 0 30px rgba(56, 172, 56, 0.8),
+      0 0 40px rgba(56, 172, 56, 0.6);
+  }
+
+  100% {
+    text-shadow: 0 0 6px rgba(56, 172, 56, 0.8),
+      0 0 6px rgba(56, 172, 56, 0.6),
+      0 0 6px rgba(56, 172, 56, 0.4);
+  }
+}
+
+.text {
+  animation: glow 2s infinite;
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.crt_effect {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/gbKkAAAAABJRU5ErkJggg==') repeat;
+  background-size: 100% 2px;
+  filter: contrast(1.2) brightness(0.9);
+}
+
+.flicker_delay {
+  animation: flicker 0.2s infinite;
+}

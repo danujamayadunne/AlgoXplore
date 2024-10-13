@@ -27,10 +27,31 @@ export default function Home() {
     };
   }, [activeTab]);
 
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeTab]);
+
+  useEffect(() => {
+    const crtElement = document.querySelector('.crt_effect');
+    if (crtElement) {
+      const interval = setInterval(() => {
+        crtElement.classList.add('flicker_delay');
+        setTimeout(() => {
+          crtElement.classList.remove('flicker_delay');
+        }, 2000);
+      }, 5000);
+
+      return () => clearInterval(interval);
+    }
+  }, []);
+
   return (
     <main className="main flex items-center justify-center min-h-screen">
 
-      <div className="overflow-x-hidden overflow-y-scroll terminal">
+      <div className="overflow-x-hidden overflow-y-scroll terminal crt_effect">
 
         <div className="fixed z-10 header">
           <div className="flex justify-between items-center">
@@ -68,12 +89,12 @@ export default function Home() {
           <div className="terminal_right ml-auto overflow-y-auto">
             {activeTab === "About" &&
               <div className="pr-20">
-                <p>
+                <p className="text">
                   AlgoXplore 1.0 is event organized by the []. The event is aimed at providing a platform for students to explore the world of algorithms and data structures. The event will consist of a series of lectures and hands-on sessions on various topics in algorithms and data structures. The event will also include a coding competition where participants can showcase their skills in competitive programming
                   <span className="blinking_underscore"> _</span>
                 </p>
                 <img className="mt-5 about_image" src="/algoexplore.jpg" alt="AlgoXplore" width={500} height={200} />
-                <p className="pt-5">
+                <p className="pt-5 text">
                   The event is open to all students who are interested in algorithms and data structures. Participants can register as a team of up to four members. The event will be held on 10th October 2021 at the []. Participants are required to bring their own laptops for the coding competition. The event is free of charge and lunch will be provided. //AI Generated Text.
                 </p>
               </div>
