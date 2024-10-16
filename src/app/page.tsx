@@ -55,7 +55,7 @@ export default function Home() {
 
         <div className="fixed z-10 header">
           <div className="flex justify-between items-center">
-            <p className="relative font-bold text-xl pointer-events-none glitch" data-text="AlgoXplore 1.0">AlgoXplore 1.0</p>
+            <p className="relative font-bold text-lg pointer-events-none lg:text-xl glitch" data-text="AlgoXplore 1.0">AlgoXplore 1.0</p>
             <div className="flex flex-col text-sm lg:flex-row lg:gap-3">
               <Link href="/">
                 <p className="hover:after:content-['↗'] hover:after:ml-1 pointer-events-auto">LinkedIn</p>

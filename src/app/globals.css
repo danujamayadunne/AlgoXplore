@@ -276,6 +276,7 @@ body {
   .menu_item {
     padding: 6px;
     display: flex;
+    font-size: 0.9em;
     align-items: center;
     width: 100px;
   }
